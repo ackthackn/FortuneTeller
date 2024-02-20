@@ -1,65 +1,67 @@
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.EtchedBorder;
-import javax.swing.border.TitledBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class FortuneTellerFrame extends JFrame {
-    JFrame frame;
-    JPanel panelTop;
-    JPanel panelMiddle;
-    JPanel panelBottom;
-    JLabel fortuneLabel;
+    JPanel mainPanel, topPanel, middlePanel, bottomPanel;
+    JLabel fortuneLabel, displayImage;
     ImageIcon fortuneTellerImage;
-    JLabel displayImage;
     JTextArea textArea;
     JScrollPane scrollPane;
+    JButton read, quit;
     public FortuneTellerFrame() {
-        frame = new JFrame();
-        frame.setSize(600,600);
-        frame.setTitle("Fortune Teller");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-//----------------------------------------------------------------------------
-        panelTop = new JPanel();
+        mainPanel = new JPanel();
+        mainPanel.setLayout(new BorderLayout());
 
-        fortuneLabel = new JLabel("Fortune Teller");
-        fortuneLabel.setFont(new Font("Bookman Old Style", Font.PLAIN, 36));
+        createTopPanel();
+        mainPanel.add(topPanel, BorderLayout.NORTH);
+
+        createMiddlePanel();
+        mainPanel.add(middlePanel, BorderLayout.CENTER);
+
+        createBottomPanel();
+        mainPanel.add(bottomPanel, BorderLayout.SOUTH);
+
+        add(mainPanel);
+        setSize(600, 600);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+    }
+
+    private void createTopPanel() {
+        topPanel = new JPanel();
 
         fortuneTellerImage = new ImageIcon("fortuneTeller.png");
-        displayImage = new JLabel(fortuneTellerImage);
+        fortuneLabel = new JLabel("Fortune Teller", fortuneTellerImage, JLabel.CENTER);
+        fortuneLabel.setFont(new Font("Bookman Old Style", Font.PLAIN, 36));
+        fortuneLabel.setVerticalTextPosition(JLabel.BOTTOM);
+        fortuneLabel.setHorizontalTextPosition(JLabel.CENTER);
 
-        fortuneLabel.setBounds(180, 10, 300, 50);
-        displayImage.setBounds(260,70,100, 100);
+        topPanel.add(fortuneLabel);
+    }
 
-//----------------------------------------------------------------------------
-        panelMiddle = new JPanel();
+    private void createMiddlePanel(){
+        middlePanel = new JPanel();
 
-        textArea = new JTextArea(15,30);
+        textArea = new JTextArea(10,55);
         textArea.setEditable(false);
+
         scrollPane = new JScrollPane(textArea);
 
-//----------------------------------------------------------------------------
-        panelBottom = new JPanel();
+        middlePanel.add(scrollPane);
+    }
 
-// add stuff -----------------------------------------------------------------
-        frame.add(panelTop);
-        frame.add(panelMiddle);
-        frame.add(panelBottom);
+    private void createBottomPanel(){
+        bottomPanel = new JPanel();
+        bottomPanel.setLayout(new GridLayout(1,2));
 
-        panelTop.add(fortuneLabel);
-        panelTop.add(displayImage);
+        read = new JButton("Read My Fortune!");
 
-        panelMiddle.add(scrollPane);
+        quit = new JButton("Quit");
+        quit.addActionListener((ActionEvent ae) -> System.exit(0));
 
-// layout stuff --------------------------------------------------------------
-        panelTop.setLayout(null);
-        panelMiddle.setLayout(null);
-        panelBottom.setLayout(null);
-
-        panelTop.setBounds(0,0,600,200);
-        panelMiddle.setBounds(0,200,600,200);
-        panelBottom.setBounds(0,400,600,200);
+        bottomPanel.add(read);
+        bottomPanel.add(quit);
     }
 
     public static void main(String[] args) {

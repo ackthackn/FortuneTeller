@@ -1,5 +1,7 @@
+import javax.swing.*;
+
 public class FortuneTellerViewer {
     public static void main(String[] args) {
-        new FortuneTellerFrame();
+        JFrame frame = new FortuneTellerFrame();
     }
 }
