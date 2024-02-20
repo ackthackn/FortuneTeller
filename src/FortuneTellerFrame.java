@@ -106,8 +106,4 @@ public class FortuneTellerFrame extends JFrame {
             humorousFortunes.add("You will read this fortune.");
             humorousFortunes.add("You're pregnant");
     }
-
-    public static void main(String[] args) {
-        new FortuneTellerFrame();
-    }
 }
