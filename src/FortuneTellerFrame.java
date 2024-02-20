@@ -14,20 +14,24 @@ public class FortuneTellerFrame extends JFrame {
 
         JPanel panelTop = new JPanel();//new GridLayout(1,2));
 
+
         JLabel fortuneLabel = new JLabel("Fortune Teller");
-        fortuneLabel.setFont(new Font("Serif", Font.PLAIN, 36));
+        fortuneLabel.setFont(new Font("Bookman Old Style", Font.PLAIN, 36));
 
         fortuneTellerImage = new ImageIcon("fortuneTeller.png");
         displayImage = new JLabel(fortuneTellerImage);
 
         // set locations
-        fortuneLabel.setLocation(300,0);
-        displayImage.setLocation(300, 100);
+        fortuneLabel.setBounds(180, 10, 300, 50);
+        displayImage.setBounds(260,70,100, 100);
 
         // add stuff
         frame.add(panelTop);
         panelTop.add(fortuneLabel);
         panelTop.add(displayImage);
+
+        panelTop.setLayout(null);
+        panelTop.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
     }
 
     public static void main(String[] args) {
