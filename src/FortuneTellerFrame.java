@@ -30,7 +30,7 @@ public class FortuneTellerFrame extends JFrame {
         mainPanel.add(bottomPanel, BorderLayout.SOUTH);
 
         add(mainPanel);
-        setSize(600, 600);
+        setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
@@ -63,6 +63,7 @@ public class FortuneTellerFrame extends JFrame {
     private void createBottomPanel(){
         bottomPanel = new JPanel();
         bottomPanel.setLayout(new GridLayout(1,2));
+
         createFortunes();
 
         read = new JButton("Read My Fortune!");
@@ -79,6 +80,11 @@ public class FortuneTellerFrame extends JFrame {
 
         quit = new JButton("Quit");
         quit.addActionListener((ActionEvent ae) -> System.exit(0));
+
+        Dimension preferredSize = new Dimension(50,50);
+
+        read.setPreferredSize(preferredSize);
+        quit.setPreferredSize(preferredSize);
 
         bottomPanel.add(read);
         bottomPanel.add(quit);
